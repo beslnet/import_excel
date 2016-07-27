@@ -1,0 +1,23 @@
+<div class="row">
+<div class="col-xs-12 col-sm-6 col-md-6">
+<%= bootstrap_form_for(@product) do |f| %>
+  <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% @product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+    <%= f.text_field :name %>
+    <%= f.text_area :description %>
+    <%= f.number_field :price %>
+    <%= f.submit %>
+<% end %>
+</div>
+</div>

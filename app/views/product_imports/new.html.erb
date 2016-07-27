@@ -1,0 +1,35 @@
+<h1>Importación de Productos</h1>
+
+<p>Puedes usar un archivo CSV (delimitado por comas), o un archivo Excel (XLS, XLST).  Se permiten las siguientes columnas, en el mismo orden:</p>
+
+
+<ul>
+  <% Product.columns.each do |column| %>
+    <% if column.name.in? ["id", "name", "description", "price"] %>
+      <li>
+        <strong><%= column.name %></strong> -
+        <%= column.type.to_s.titleize %> type
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<p>Si escribes un <strong>id</strong> que ya existe en la base de datos, este actualizará el actual registro que posee ese ID en la base de datos. 
+
+<%= form_for @product_import do |f| %>
+  <% if @product_import.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@product_import.errors.count, "error") %> prohibited this import from completing:</h2>
+      <ul>
+      <% @product_import.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <p><%= f.file_field :file, :class => "btn btn-info" %></p>
+  </div>
+  <div class="buttons"><%= f.submit "Import", :class => "btn btn-primary" %></div>
+<% end %>
