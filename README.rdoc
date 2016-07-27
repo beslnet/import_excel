@@ -6,9 +6,9 @@ Está construido en Rails 4.2.6 y Ruby 2.3.0
 
 Para instalar, clonar y ejecutar las rutinas típicas:
 
-bundle.
+<tt>bundle</tt>.
 
-rake db:migrate .
+<tt>rake db:migrate</tt>.
 
 
 
